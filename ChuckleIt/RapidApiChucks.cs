@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace ChuckleIt
 {
-    class RapidApiChucks : IChucker
+    class RapidApiChucks : IChucksTrace
     {
         //TODO FIXME: implementation required
-        int IChucker.HowManyChucksAreThere() => 1;
+        int IChucksTrace.HowManyChucksAreThere() => 1;
         //TODO FIXME: implementation required
-        string[] IChucker.GetChucks(int fromIndex, int howMany) => new[] { "Haha, chuck is so fast that he is gone before he arrives." };
-        string IChucker.Identifier() => nameof(RapidApiChucks);
+        string[] IChucksTrace.GetChucks(int fromIndex, int howMany) => new[] { "Haha, chuck is so fast that he is gone before he arrives." };
+        string IChucksTrace.Identifier() => nameof(RapidApiChucks);
     }
 }
