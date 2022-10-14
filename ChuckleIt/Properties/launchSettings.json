@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "ChuckleIt": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7066"
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}",
+      "httpPort": 32168,
+      "useSSL": false
+    }
+  }
+}
