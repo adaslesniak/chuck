@@ -20,8 +20,7 @@ public class Upchuckle
 }
 
 public interface IChucksTrace {
-    int HowManyChucksAreThere();
-    string[] GetChucks(int fromIndex = 0, int howMany = 1);
+    string[] GetMoreChucks();
     string Identifier();
 }
 

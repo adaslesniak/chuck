@@ -5,7 +5,6 @@ using System.Reflection.PortableExecutable;
 namespace ChuckleIt;
 internal class SqlLiteChucks : IChucksKeeper
 {
-
     const string ChucksTable = "Chuck";
     const string ChucksColumn = "Joke";
     const string SourceColumn = "Whereabout";
@@ -41,18 +40,8 @@ internal class SqlLiteChucks : IChucksKeeper
                 }
             }
         } catch(Exception error) {
-            Log.Error("I'm too stupid for that");
+            Log.Error($"Issue with sequelite ({command})", error);
         }
-
-        //void Debug(SQLiteConnection toBeChecked) {
-        //    var schemaQuery = new SQLiteCommand("SELECT name FROM sqlite_master WHERE type='table'", toBeChecked);
-        //    var schemaReader = schemaQuery.ExecuteReader();
-        //    var xxx = schemaReader.GetSchemaTable();
-        //    while(schemaReader.Read()) {
-        //        var table = schemaReader.GetString(0);
-        //        Log.Info($"found table: {table}");
-        //    }
-        //}
     }
 
     string DataSourcePath() {
