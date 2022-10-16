@@ -20,10 +20,10 @@ knowledge of commonly used libraries in .NET framework.
  
  ### Afterthoughts:
    **Bad business directives does matter always, even in simplest project.**
-> In this case generic joke gatherer is against exact requirments 
-> to pull exact amount of jokes with api that does not support paging. 
+> In this case generic joke gatherer is against very specific requirment 
+> to pull exact amount of jokes from api that does not support paging. 
 > Here is conflict between requirments and good architecture. 
-> Without caching what was collected any collection makes no sense, 
+> Without caching what was collected any permanent collecting makes no sense, 
 > as it will be just random calls for random stuff, 
 > therefore any other optimization seemed to have no sense (async calls, paralel calls). 
 > Just by making little bigger calls (call for categhory, not single joke) would allow 
