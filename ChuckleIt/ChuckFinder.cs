@@ -14,7 +14,7 @@ class ChuckFinder
         amountToCheck = howManyToCheckPerRun;
     }
 
-    internal void Run(IChucksKeeper storage, IChucksTrace[] searchArea) {
+    internal void Run(IChucksKeeper storage, IChuckTrace[] searchArea) {
         foreach(var source in searchArea) {
             if(source == null) {
                 Log.Error("Chuck is nowhere but we can't chase him there.");
@@ -23,29 +23,19 @@ class ChuckFinder
         }
     }
 
-    void UpdateFrom(IChucksTrace source, IChucksKeeper target) {
-        //this logic should be moved to interface, as different sources may have ways of reasonable paging
+    void UpdateFrom(IChuckTrace source, IChucksKeeper target) {
         var sourceId = string.Empty;
         try {
             sourceId = source.Identifier();
             var added = 0;
-            var found = new string[0];
-            do {
-                found = source.MoreChucks();
-                added += CheckNextBatch(found, sourceId, target);
-            } while(found != null && found.Length > 0);
+            for(int i = 0; i < amountToCheck; i++) {
+                var found = source.GetSomeChuck();
+                added += CheckNext(found, sourceId, target) ? 1 : 0;
+            }
             Log.Info($"Found {added} interesting chucks from {sourceId}");
         } catch(Exception error) {
             Log.Error($"Obscure source of chucks: {sourceId}. Unmesurable amount of available chucks.", error);
         }
-    }
-
-    int CheckNextBatch(string[] jokes, string fromSource, IChucksKeeper jail) {
-        var validatedAsNew = 0;
-        foreach(var joke in jokes) {
-            validatedAsNew += CheckNext(joke, fromSource, jail) ? 1 : 0;
-        }
-        return validatedAsNew;
     }
 
     bool CheckNext(string joke, string fromSource, IChucksKeeper jail) {

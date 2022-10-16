@@ -14,13 +14,13 @@ public class Upchuckle
         Log.Info($"Starting search of chucks: {start}");
         new ChuckFinder(7).Run(
             new SqlLiteChucks(),
-            new[] { new RapidApiChucksBatched()} );
+            new[] { new RapidApiChucksRandom()} );
         Log.Info($"Done with chuckling after {(DateTime.UtcNow - start)}.");
     }
 }
 
-public interface IChucksTrace {
-    string[] MoreChucks();
+public interface IChuckTrace {
+    string GetSomeChuck();
     string Identifier();
 }
 
