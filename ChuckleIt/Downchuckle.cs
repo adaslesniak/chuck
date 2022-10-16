@@ -13,7 +13,7 @@ public class Downchuckle
             Log.Setup(log);
             LookForJokes(amountToPull);
         } catch(Exception error) {
-            Log.Error("all is kaput", error); 
+            Log.Crash("all is kaput, I am calling mummy and pretending that someone else caused this", error); 
         }
 
         static void LookForJokes(int howMany) {
