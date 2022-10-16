@@ -1,10 +1,7 @@
 ﻿using F23.StringSimilarity;
 using System;
-using System.Linq;
-using static System.Net.Mime.MediaTypeNames;
-
 namespace ChuckleIt;
-class ChuckFinder
+public class ChuckFinder
 {
     readonly int amountToCheck = 3;
 
@@ -49,13 +46,18 @@ class ChuckFinder
         return true;
     }
 
-    bool IsGoodChuck(string suspect) =>
+    //proabably should be private (at least internal) and not static, but test are easier this way
+    public static bool IsGoodChuck(string suspect) =>
         suspect != null
         && suspect.Length > "Chuck Borris".Length
         && suspect.Length <= 200;
-        //&& dearAiLord.IsFunny(suspect); //that may be little to advanced for tonight :p
+        //&& dearAiLord.IsFunny(suspect); //that may be little too advanced for tonight :p
 
-    bool IsBasicallyTheSame(string someJoke, string otherJoke) =>
-        new NormalizedLevenshtein().Distance(someJoke, otherJoke) > 0.9;
+    //proabably should be private (at least internal) and not static, but test are easier this way
+    public static bool IsBasicallyTheSame(string someJoke, string otherJoke) {
+        var normalizedDifference = new NormalizedLevenshtein().Distance(someJoke.ToLower(), otherJoke.ToLower());// > 0.9;
+        return normalizedDifference < 0.34;
         //FIXME: I have no idea about comparing texts, just pulled something out of my... little bit of research required
+    }
+
 }
