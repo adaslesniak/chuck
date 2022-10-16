@@ -1,0 +1,10 @@
+{
+    "IsEncrypted": false,
+    "Values": {
+        "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+        "FUNCTIONS_WORKER_RUNTIME": "dotnet",
+        "howManyToPull": "2",
+        "triggerSchedule": "0 0 16-21 * Nov *",
+        "triggerInterval": "00:01:00" 
+    }
+}

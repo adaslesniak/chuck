@@ -6,7 +6,7 @@ namespace Downchuckle;
 public class Downchuckle
 {
     [FunctionName("Downchuckle")]
-    public void Run([TimerTrigger("%triggerTime%")]TimerInfo myTimer, ILogger log)
+    public void Run([TimerTrigger("%triggerInterval%")]TimerInfo myTimer, ILogger log)
     {
         try {
             var amountToPull = Configurable("howManyToPull", 3);
