@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using System;
 
-namespace ChuckleIt;
+namespace Downchuckle;
 static class Log
 {
     static ILogger implemnetation;

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Net.Http;
 
-namespace ChuckleIt;
+namespace Downchuckle;
 
 //this makes some sense, but doesn't allow to control amount of pulled data, so doesn't meed requirements
 class RapidApiChucksRandom : IChuckTrace

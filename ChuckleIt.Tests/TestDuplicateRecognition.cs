@@ -1,4 +1,4 @@
-namespace ChuckleIt.Tests;
+namespace Downchuckle.Tests;
 
 [TestFixture]
 public class TestDuplicateRecognition

@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Data.SQLite;
 
-namespace ChuckleIt;
+namespace Downchuckle;
 internal class SqlLiteChucks : IChucksKeeper
 {
+    //yeah... entity framework everyone says... but that would be overkill and counterproducitve here
     const string ChucksTable = "Chuck";
     const string ChucksColumn = "Joke";
     const string SourceColumn = "Whereabout";
 
-    void IChucksKeeper.KeepHim(string suspect, string source = "unknown") {
+    void IChucksKeeper.KeepHim(string suspect, string source) {
         AccessData($"insert into {ChucksTable}" + $"({ChucksColumn}, {SourceColumn})" + $"values('{suspect}','{source}')", operation => {
             operation.ExecuteNonQuery();
         });

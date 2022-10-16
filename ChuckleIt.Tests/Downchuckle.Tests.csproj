@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ChuckleIt\ChuckleIt.csproj" />
+    <ProjectReference Include="..\ChuckleIt\Downchuckle.csproj" />
   </ItemGroup>
 
 </Project>

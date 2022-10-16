@@ -1,6 +1,6 @@
 ﻿using F23.StringSimilarity;
 using System;
-namespace ChuckleIt;
+namespace Downchuckle;
 public class ChuckFinder
 {
     readonly int amountToCheck = 3;

@@ -1,5 +1,5 @@
 ﻿using System.Text;
-namespace ChuckleIt.Tests;
+namespace Downchuckle.Tests;
 
 [TestFixture]
 public class TestJokesFilter {
