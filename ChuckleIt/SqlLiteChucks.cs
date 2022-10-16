@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data.SQLite;
-using System.Reflection.PortableExecutable;
 
 namespace ChuckleIt;
 internal class SqlLiteChucks : IChucksKeeper
@@ -34,7 +33,6 @@ internal class SqlLiteChucks : IChucksKeeper
         try {
             using(SQLiteConnection data = new(DataSourcePath())) {
                 data.Open();
-                //Debug(data);
                 using(SQLiteCommand operation = new(command, data)) {
                     toDo(operation);
                 }

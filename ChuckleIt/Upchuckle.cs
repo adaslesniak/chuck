@@ -12,15 +12,15 @@ public class Upchuckle
         Log.Setup(log);
         var start = DateTime.UtcNow;
         Log.Info($"Starting search of chucks: {start}");
-        new ChuckFinder().Run(
+        new ChuckFinder(7).Run(
             new SqlLiteChucks(),
-            new[] { new RapidApiChucks()} );
+            new[] { new RapidApiChucksBatched()} );
         Log.Info($"Done with chuckling after {(DateTime.UtcNow - start)}.");
     }
 }
 
 public interface IChucksTrace {
-    string[] GetMoreChucks();
+    string[] MoreChucks();
     string Identifier();
 }
 

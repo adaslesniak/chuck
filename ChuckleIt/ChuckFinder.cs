@@ -6,6 +6,14 @@ using static System.Net.Mime.MediaTypeNames;
 namespace ChuckleIt;
 class ChuckFinder
 {
+    readonly int amountToCheck = 3;
+
+    private ChuckFinder() { }
+
+    internal ChuckFinder(int howManyToCheckPerRun) {
+        amountToCheck = howManyToCheckPerRun;
+    }
+
     internal void Run(IChucksKeeper storage, IChucksTrace[] searchArea) {
         foreach(var source in searchArea) {
             if(source == null) {
@@ -16,15 +24,14 @@ class ChuckFinder
     }
 
     void UpdateFrom(IChucksTrace source, IChucksKeeper target) {
+        //this logic should be moved to interface, as different sources may have ways of reasonable paging
         var sourceId = string.Empty;
         try {
             sourceId = source.Identifier();
-            var @checked = 0; //should asks target how many are there from this source
             var added = 0;
             var found = new string[0];
             do {
-                found = source.GetMoreChucks();
-                @checked += found.Length;
+                found = source.MoreChucks();
                 added += CheckNextBatch(found, sourceId, target);
             } while(found != null && found.Length > 0);
             Log.Info($"Found {added} interesting chucks from {sourceId}");

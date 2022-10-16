@@ -1,32 +1,29 @@
-﻿using Newtonsoft;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Net.Http.Json;
 
 namespace ChuckleIt;
-class RapidApiChucks : IChucksTrace
+
+//this makes some sense, but doesn't allow to control amount of pulled data, so doesn't meed requirements
+class RapidApiChucksRandom : IChucksTrace
 {
-    //TODO FIXME: implementation required
-    string[] IChucksTrace.GetMoreChucks() {
-        if(actualCategory++ > 1) {
-            return new string[0]; 
-        }
-        if(false == EnsureCategories()
-            || actualCategory > categories.Length) {
-            return new string[0];
-        }
-        var nextCategory = categories[actualCategory++];
-        return GetJokesAbout(nextCategory);
+    string[] IChucksTrace.MoreChucks() => new string[] {
+        GetRandomJoke()
+    };
+        
+    string GetRandomJoke() {
+        var responseString = Get($"jokes/random");
+        var responseBody = JsonConvert.DeserializeObject<JObject>(responseString);
+        return responseBody.Value<string>("value");
     }
 
-    string IChucksTrace.Identifier() => nameof(RapidApiChucks);
+    string IChucksTrace.Identifier() => nameof(RapidApiChucksRandom);
 
     readonly HttpClient http;
     string[] categories;
-    ushort actualCategory = 0;
+    ushort actualCategory;
 
     bool EnsureCategories() {
         if(categories is not null
@@ -60,7 +57,7 @@ class RapidApiChucks : IChucksTrace
         }
     }
 
-    public RapidApiChucks() {
+    public RapidApiChucksRandom() {
         http = new();
         http.DefaultRequestHeaders.Accept.Clear();
         http.DefaultRequestHeaders.Add("accept", "application/json");
@@ -81,3 +78,4 @@ class RapidApiChucks : IChucksTrace
     }
 
 }
+
